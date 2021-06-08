@@ -1,10 +1,10 @@
-package com.yuanshenwiki.yuanshenwiki;
+package com.ProjectEnglish;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class YuanshenwikiApplicationTests {
+class ProjectEnglishApplicationTests {
 
     @Test
     void contextLoads() {
