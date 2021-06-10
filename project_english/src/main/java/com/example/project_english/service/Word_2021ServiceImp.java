@@ -1,9 +1,7 @@
 package com.example.project_english.service;
 
 import com.example.project_english.bean.Word_2021;
-import com.example.project_english.bean.Commit;
 import com.example.project_english.mapper.Word_2021Mapper;
-import com.example.project_english.util.IdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,54 +13,33 @@ public class Word_2021ServiceImp implements Word_2021Service {
 
     @Autowired
     Word_2021Mapper mapper;
-    @Autowired
-    CommitService commitService;
     @Override
-    public Word_2021 getWord_2021ByMno(String Mno) {
-        String Wno = mapper.getWnoByMno(Mno);
-        String Weng = mapper.getWengByMno(Mno);
-        String Wpar = mapper.getWparByMno(Mno);
-        String Wchi = mapper.getWchiByMno(Mno);
+    public Word_2021 getWord_2021ById(Integer Id) {
+        String Weng = mapper.getWengById(Id);
+        String Wpar = mapper.getWparById(Id);
+        String Wchi = mapper.getWchiById(Id);
 
-        List<Integer> commitIds=IdUtil.str2list(mapper.getCommitsByMno(Mno));
-        List<Commit> commits=new ArrayList<>();
-        for(Integer i:commitIds){
-            commits.add(commitService.getCommitByID(i));
-        }
-        Word_2021 w=new Word_2021(Wno,Weng,Mno,Wpar,Wchi,commits);
+        Word_2021 w=new Word_2021(Id,Weng,Wpar,Wchi);
         return w;
     }
 
     @Override
-    public void commit(String Mno,Commit commit) {
-        Word_2021 w=getWord_2021ByMno(Mno);
-        List<Commit> commits=w.getCommits();
-        commits.add(commit);
-        List<Integer> ids=new ArrayList<>();
-        for(Commit com:commits){
-            ids.add(com.getId());
-        }
-        mapper.setCommits(IdUtil.list2str(ids),Mno);
-    }
-
-    @Override
     public List<Word_2021> getAllWord_2021() {
-        List<String> Mnos=mapper.getAllMno();
+        List<Integer> Ids=mapper.getAllId();
         List<Word_2021> results=new ArrayList<>();
-        for(String Mno:Mnos){
-            results.add(getWord_2021ByMno(Mno));
+        for(Integer Id:Ids){
+            results.add(getWord_2021ById(Id));
         }
         return results;
     }
 
     @Override
     public List<Word_2021> search(String key) {
-        List<String> Mnos=mapper.search(key);
+        List<Integer> Ids=mapper.search(key);
         List<Word_2021> result=new ArrayList<>();
-        for(String Mno:Mnos){
-            result.add(getWord_2021ByMno(Mno));
+        for(Integer Id:Ids){
+            result.add(getWord_2021ById(Id));
         }
         return result;
     }
-
 }

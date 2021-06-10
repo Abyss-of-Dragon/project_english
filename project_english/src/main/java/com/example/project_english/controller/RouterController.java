@@ -1,9 +1,9 @@
 package com.example.project_english.controller;
 
 import com.example.project_english.bean.User;
+import com.example.project_english.bean.Irverb;
 import com.example.project_english.bean.Word_2021;
-import com.example.project_english.service.UserService;
-import com.example.project_english.service.Word_2021Service;
+import com.example.project_english.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +20,16 @@ public class RouterController {
     UserService userService;
     @Autowired
     Word_2021Service word_2021Service;
+    @Autowired
+    AreaService areaService;
+    @Autowired
+    NumeralService numeralService;
+    @Autowired
+    IrverbService irverbService;
+    @Autowired
+    MonthService monthService;
+    @Autowired
+    WeekService weekService;
 
     @GetMapping("")
     public void index(HttpServletResponse response) throws IOException {
@@ -54,14 +64,14 @@ public class RouterController {
         return mav;
     }
 
-    //百科页面
-    @GetMapping("/Encyclopedia")
+    //国家和地区
+    @GetMapping("/guojia")
     public ModelAndView encylopedia(HttpServletRequest request){
         ModelAndView mav=new ModelAndView();
         User loginUser= userService.checkCookie(request.getCookies());
         if(loginUser!=null){
-            mav.setViewName("Encyclopedia");
-            mav.addObject("word_2021",word_2021Service.getAllWord_2021());
+            mav.setViewName("guojia");
+            mav.addObject("area",areaService.getAllArea());
             mav.addObject("loginUser",loginUser);
         }else{
             mav.setViewName("login");
@@ -86,13 +96,14 @@ public class RouterController {
         return mav;
     }
 
-    //计算页面 可删
-    @GetMapping("/calculator")
+    //数词表
+    @GetMapping("/shuci")
     public ModelAndView calculator(HttpServletRequest request){
         ModelAndView mav=new ModelAndView();
         User loginUser= userService.checkCookie(request.getCookies());
         if(loginUser!=null){
-            mav.setViewName("calculator");
+            mav.setViewName("shuci");
+            mav.addObject("numeral",numeralService.getAllNumeral());
             mav.addObject("loginUser",loginUser);
         }else{
             mav.setViewName("login");
@@ -100,13 +111,15 @@ public class RouterController {
         return mav;
     }
 
-    //抽卡模拟页面 可删
-    @GetMapping("/gacha")
+    //月份和星期
+    @GetMapping("/monthandweek")
     public ModelAndView gacha(HttpServletRequest request){
         ModelAndView mav=new ModelAndView();
         User loginUser= userService.checkCookie(request.getCookies());
         if(loginUser!=null){
-            mav.setViewName("gacha");
+            mav.setViewName("monthandweek");
+            mav.addObject("month",monthService.getAllMonth());
+            mav.addObject("week",weekService.getAllWeek());
             mav.addObject("loginUser",loginUser);
         }else{
             mav.setViewName("login");
@@ -114,13 +127,14 @@ public class RouterController {
         return mav;
     }
 
-    //新闻页面 可删
-    @GetMapping("/news")
+    //不规则动词
+    @GetMapping("/dongci")
     public ModelAndView news(HttpServletRequest request){
         ModelAndView mav=new ModelAndView();
         User loginUser= userService.checkCookie(request.getCookies());
         if(loginUser!=null){
-            mav.setViewName("news");
+            mav.setViewName("dongci");
+            mav.addObject("irverb",irverbService.getAllIrverb());
             mav.addObject("loginUser",loginUser);
         }else{
             mav.setViewName("login");

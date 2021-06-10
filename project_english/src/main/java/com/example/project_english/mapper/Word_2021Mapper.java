@@ -1,29 +1,30 @@
 package com.example.project_english.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface Word_2021Mapper {
-    @Select("SELECT Wno FROM word_Meaning_2021 WHERE Mno=#{Mno}")
-    String getWnoByMno(String Mno);
-    @Select("SELECT Weng FROM word_Meaning_2021 WHERE Mno=#{Mno}")
-    String getWengByMno(String Mno);
-    @Select("SELECT Wpar FROM word_Meaning_2021 WHERE Mno=#{Mno}")
-    String getWparByMno(String Mno);
-    @Select("SELECT Wchi FROM word_Meaning_2021 WHERE Mno=#{Mno}")
-    String getWchiByMno(String Mno);
-    @Select("SELECT Commits FROM word_Meaning_2021 WHERE Mno=#{Mno}")
-    String getCommitsByMno(String Mno);
-    @Select("SELECT Mno FROM word_Meaning_2021")
-    List<String> getAllMno();
+    @Select("SELECT english FROM word WHERE id=#{Id}")
+    String getWengById(Integer Id);
+    @Select("SELECT attribute FROM word WHERE id=#{Id}")
+    String getWparById(Integer Id);
+    @Select("SELECT chinese FROM word WHERE id=#{Id}")
+    String getWchiById(Integer Id);
+    @Select("SELECT IFNULL(MAX(id),-1) FROM word")
+    Integer getMaxId();
 
-    @Select("SELECT Mno FROM word_Meaning_2021 WHERE Weng=#{Weng}")
-    List<String> search(String Weng);
+    @Select("SELECT id FROM word")
+    List<Integer> getAllId();
 
-    @Update("UPDATE word_Meaning_2021 SET commits=#{commits} WHERE Mno=#{Mno}")
-    void setCommits(String commits,String Mno);
+    @Select("SELECT id FROM word WHERE english=#{Weng}")
+    List<Integer> search(String Weng);
+
+    @Update("UPDATE word SET english=#{Weng}, attribute=#{Wpar}, chinese=#{Wchi} WHERE id=#{Id}")
+    void updateWord(Integer Id,String Weng,String Wpar,String Wchi);
+    @Insert("INSERT INTO word VALUES(#{Id},#{Weng},#{Wpar},#{Wchi})")
+    void addWord(Integer Id,String Weng,String Wpar,String Wchi);
+    @Delete("DELETE FROM word WHERE Id = #{Id}")
+    void deleteWord(Integer Id);
 }

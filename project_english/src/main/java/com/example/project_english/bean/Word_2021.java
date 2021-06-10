@@ -3,32 +3,24 @@ package com.example.project_english.bean;
 import java.util.List;
 
 public class Word_2021 {
-    String Wno;
+    Integer Id;
     String Weng;
-    String Mno;
     String Wpar;
     String Wchi;
-    List<Commit> commits;
 
-    public Word_2021(String Wno, String Weng, String Mno, String Wpar, String Wchi, List<Commit> commits) {
-        this.Wno = Wno;
+    public Word_2021(Integer Id, String Weng, String Wpar, String Wchi) {
+        this.Id = Id;
         this.Weng = Weng;
-        this.Mno = Mno;
         this.Wpar = Wpar;
         this.Wchi = Wchi;
-        this.commits = commits;
     }
 
-    public Word_2021(List<Commit> commits) {
-        this.commits = commits;
+    public Integer getId() {
+        return Id;
     }
 
-    public String getWno() {
-        return Wno;
-    }
-
-    public void setWno(String wno) {
-        Wno = wno;
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getWeng() {
@@ -37,14 +29,6 @@ public class Word_2021 {
 
     public void setWeng(String weng) {
         Weng = weng;
-    }
-
-    public String getMno() {
-        return Mno;
-    }
-
-    public void setMno(String mno) {
-        Mno = mno;
     }
 
     public String getWpar() {
@@ -61,9 +45,5 @@ public class Word_2021 {
 
     public void setWchi(String wchi) {
         Wchi = wchi;
-    }
-
-    public List<Commit> getCommits() {
-        return commits;
     }
 }

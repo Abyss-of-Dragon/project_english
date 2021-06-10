@@ -25,7 +25,7 @@ public class CommitServiceImp implements CommitService{
     public void commitChara(String Mno, Integer user, String context) {
         Integer newId=mapper.getMaxId()+1;
         mapper.commit(newId,user,context);
-        word_2021Service.commit(Mno,getCommitByID(newId));
+//        word_2021Service.commit(Mno,getCommitByID(newId));
     }
 
 }
