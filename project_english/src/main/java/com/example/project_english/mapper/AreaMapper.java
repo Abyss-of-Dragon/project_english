@@ -1,9 +1,6 @@
 package com.example.project_english.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,4 +24,6 @@ public interface AreaMapper {
     void updateArea(Integer Id,String area,String lang,String natnl,String natnlty);
     @Insert("INSERT INTO area VALUES(#{Id},#{area},#{lang},#{natnl},#{natnlty})")
     void addArea(Integer Id,String area,String lang,String natnl,String natnlty);
+    @Delete("DELETE FROM area WHERE id = #{Id}")
+    void deleteArea(Integer Id);
 }

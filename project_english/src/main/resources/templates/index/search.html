@@ -112,12 +112,9 @@
                         <div class="column"  th:each="word_2021:${result}">
                             <div class="ui fluid card">
                                 <div class="content">
-                                    <p th:text="${word_2021.getId()}" class="header"></p>
                                     <p th:text="${word_2021.getWeng()}" class="header"></p>
                                     <p th:text="${word_2021.getWpar()}" class="header"></p>
                                     <p th:text="${word_2021.getWchi()}" class="header"></p>
-                                    <a href="deleteWord">删除单词</a><br>
-                                    <a href="updateWord">修改单词</a>
                                 </div>
                             </div>
                         </div>

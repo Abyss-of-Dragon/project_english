@@ -32,4 +32,14 @@ public class IrverbServiceImp implements IrverbService{
         return results;
     }
 
+    @Override
+    public List<Irverb> search(String key){
+        List<Integer> Ids=mapper.search(key);
+        List<Irverb> result=new ArrayList<>();
+        for(Integer Id:Ids){
+            result.add(getIrverbById(Id));
+        }
+        return result;
+    }
+
 }

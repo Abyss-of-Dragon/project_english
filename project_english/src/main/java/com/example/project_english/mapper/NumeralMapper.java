@@ -1,9 +1,6 @@
 package com.example.project_english.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,4 +22,6 @@ public interface NumeralMapper {
     void updateNumeral(Integer Id,String cardinal,String ord_abb,String ord_num);
     @Insert("INSERT INTO numeral VALUES(#{Id},#{cardinal},#{ord_abb},#{ord_num}")
     void addNumeral(Integer Id,String cardinal,String ord_abb,String ord_num);
+    @Delete("DELETE FROM numeral WHERE id = #{Id}")
+    void deleteNumeral(Integer Id);
 }

@@ -18,6 +18,8 @@ public class AddServiceImp implements AddService{
     WeekMapper weekMapper;
     @Autowired
     NumeralMapper numeralMapper;
+    @Autowired
+    Word_sMapper word_sMapper;
 
     @Override
     public void addWord(String Weng,String Wpar,String Wchi){
@@ -53,5 +55,10 @@ public class AddServiceImp implements AddService{
     public void addNumeral(String cardinal,String ord_abb,String ord_num){
         Integer Id = numeralMapper.getMaxId() + 1;
         numeralMapper.addNumeral(Id,cardinal,ord_abb,ord_num);
+    }
+
+    @Override
+    public void addWord_s(Integer Id){
+        word_sMapper.addWord_s(Id);
     }
 }

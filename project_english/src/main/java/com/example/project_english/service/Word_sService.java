@@ -4,8 +4,8 @@ import com.example.project_english.bean.Word_2021;
 
 import java.util.List;
 
-public interface Word_2021Service {
-    Word_2021 getWord_2021ById(Integer Id);
-    List<Word_2021> getAllWord_2021();
+public interface Word_sService {
+    Word_2021 getWord_sById(Integer Id);
+    List<Word_2021> getAllWord_s();
     List<Word_2021> search(String key);
 }

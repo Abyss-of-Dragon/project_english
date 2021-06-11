@@ -1,9 +1,6 @@
 package com.example.project_english.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,9 +17,13 @@ public interface IrverbMapper {
 
     @Select("SELECT id FROM irregularverb")
     List<Integer> getAllId();
+    @Select("SELECT id FROM irregularverb WHERE Infinitive=#{infin}")
+    List<Integer> search(String infin);
 
     @Update("UPDATE irregularverb SET Infinitive=#{infin}, PastTense=#{pastT}, PastParticiple=#{PastP} WHERE id=#{Id}")
     void updateIrverb(Integer Id,String infin,String pastT,String pastP);
     @Insert("INSERT INTO irregularverb VALUES(#{Id},#{area},#{lang},#{natnl},#{natnlty})")
     void addIrverb(Integer Id,String infin,String pastT,String pastP);
+    @Delete("DELETE FROM irregularverb WHERE id = #{Id}")
+    void deleteIrverb(Integer Id);
 }

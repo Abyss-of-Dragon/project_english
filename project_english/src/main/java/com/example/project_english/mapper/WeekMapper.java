@@ -1,9 +1,6 @@
 package com.example.project_english.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,4 +20,6 @@ public interface WeekMapper {
     void updateWeek(Integer Id,String day,String day_abb);
     @Insert("INSERT INTO week VALUES(#{Id},#{day},#{day_abb})")
     void addWeek(Integer Id,String day,String day_abb);
+    @Delete("DELETE FROM week WHERE id = #{Id}")
+    void deleteWeek(Integer Id);
 }

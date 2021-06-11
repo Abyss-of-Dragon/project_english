@@ -25,6 +25,6 @@ public interface Word_2021Mapper {
     void updateWord(Integer Id,String Weng,String Wpar,String Wchi);
     @Insert("INSERT INTO word VALUES(#{Id},#{Weng},#{Wpar},#{Wchi})")
     void addWord(Integer Id,String Weng,String Wpar,String Wchi);
-    @Delete("DELETE FROM word WHERE Id = #{Id}")
+    @Delete("DELETE FROM word WHERE id = #{Id}")
     void deleteWord(Integer Id);
 }

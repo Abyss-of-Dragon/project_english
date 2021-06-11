@@ -7,4 +7,5 @@ public interface AddService {
     void addMonth(String month,String month_abb);
     void addWeek(String day,String day_abb);
     void addNumeral(String cardinal,String ord_abb,String ord_num);
+    void addWord_s(Integer Id);
 }
